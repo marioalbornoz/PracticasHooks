@@ -2,6 +2,8 @@ import React, { useReducer } from 'react'
 // import PropTypes from 'prop-types'
 import './styles.css';
 import { todoReducer } from './todoReducer';
+import { Forms } from './Forms';
+import { Todo } from './Todo';
 
 const initialState = [{
     id: new Date().getTime(),
@@ -21,33 +23,15 @@ export const TodoApp = props => {
         <div className="row">
           <div className="col-7">
             <ul className="list-group list-group-flush">
-              {todos.map((todo, i) => (
-                <li key={todo.id} className="list-group-item">
-                  <p className="text-center">
-                    {i + 1}. {todo.desc}
-                  </p>
-                  <button className="btn btn-danger">Borrar</button>
-                </li>
+            {todos.map((todo, i) => (
+                <Todo todo={todo} i={i}/>
               ))}
             </ul>
           </div>
           <div className="col-5">
             <h4>Agregar TODO</h4>
             <hr />
-            <form>
-              <input
-                type="text"
-                name="description"
-                autoComplete="off"
-                placeholder="Ingresa una tarea aqui...."
-                className="form-control"
-              />
-              <button
-                className="btn btn-outline-primary btn-block mt-2"  
-                >
-                Agregar
-              </button>
-            </form>
+            <Forms />
           </div>
         </div>
       </div>
