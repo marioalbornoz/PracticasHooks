@@ -13,7 +13,7 @@ const initialState = [{
 
 export const TodoApp = props => {
 
-    const [todos] = useReducer(todoReducer, initialState)
+    const [todos, dispatch] = useReducer(todoReducer, initialState)
     console.log(todos);
     return (
       <div>
@@ -24,14 +24,14 @@ export const TodoApp = props => {
           <div className="col-7">
             <ul className="list-group list-group-flush">
             {todos.map((todo, i) => (
-                <Todo todo={todo} i={i}/>
+              <Todo todo={todo} key={todo.id} i={i}/>
               ))}
             </ul>
           </div>
           <div className="col-5">
             <h4>Agregar TODO</h4>
             <hr />
-            <Forms />
+            <Forms dispatch={dispatch} />
           </div>
         </div>
       </div>
